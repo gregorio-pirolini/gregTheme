@@ -1,0 +1,85 @@
+nav {
+  padding-bottom: 25px;
+}
+
+#menuSmall {
+  //   display: none;
+  position: fixed;
+  display: block;
+  z-index: 5;
+  border-bottom: 1px solid black;
+  width: calc(100% - 16px);
+  font-weight: 900;
+  padding-top: 18px;
+  top: 0px;
+}
+#menuBig {
+  //   display: none;
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  display: none;
+  padding-top: 44px;
+  top: 0px;
+  font-weight: 900;
+  z-index: 5;
+  border-bottom: 1px solid black;
+  width: calc(100% - 16px);
+  ul {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    /* For IE, the outcast */
+    zoom: 1;
+    *display: inline;
+
+    li {
+      float: left;
+      padding: 2px 5px;
+    }
+  }
+}
+.custom-menu-class3 {
+  float: left;
+  margin-top: 1em;
+  ul {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    /* For IE, the outcast */
+    zoom: 1;
+    *display: inline;
+
+    li {
+      float: none;
+      padding: 2px 5px;
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  #menuSmall {
+    display: none;
+  }
+  #menuBig {
+    display: Table;
+  }
+  .custom-menu-class3 {
+    float: right;
+    ul {
+      li {
+        float: left;
+        padding: 2px 5px;
+      }
+    }
+  }
+  nav {
+    padding-bottom: 70px;
+  }
+}
+@media (min-width: 1350px) {
+  #menuBig {
+    width: 1300px;
+    margin-left: calc((100% - 1316px) / 2);
+  }
+}

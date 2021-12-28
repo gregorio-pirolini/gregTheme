@@ -1,0 +1,56 @@
+#programmierung {
+  .hiddenPlayer {
+    display: block;
+    cursor: pointer;
+  }
+
+  .playMe {
+    display: table;
+    font-weight: 900;
+    &:hover {
+      cursor: pointer;
+      color: red;
+    }
+  }
+  .blink {
+    -webkit-animation: 1s linear infinite condemned_blink_effect; /* for Safari 4.0 - 8.0 */
+    animation: 1s linear infinite condemned_blink_effect;
+  }
+
+  /* for Safari 4.0 - 8.0 */
+  @-webkit-keyframes condemned_blink_effect {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes condemned_blink_effect {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  #tape {
+    figcaption {
+      font-family: "music";
+      display: table;
+      position: absolute;
+    }
+  }
+
+  #hideMe {
+    display: none;
+  }
+}

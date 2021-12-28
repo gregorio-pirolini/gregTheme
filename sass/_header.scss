@@ -1,0 +1,25 @@
+header {
+  top: 0;
+  width: calc(100% - 16px);
+  text-align: center;
+  position: fixed;
+  padding-top: 8px;
+  height: 39px;
+  z-index: 4;
+  background-color: ghostwhite;
+  #myheader {
+    margin-top: 10px;
+  }
+}
+
+#bannertext {
+  font-size: 22px;
+  line-height: 15px;
+  font-weight: 900;
+}
+
+@media (min-width: 600px) {
+  header {
+    height: 65px;
+  }
+}

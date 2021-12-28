@@ -1,0 +1,40 @@
+@media (max-width: 850px) {
+  #zeichnen {
+    ul {
+      li:nth-child(2n) {
+        margin-right: 0px;
+      }
+    }
+  }
+}
+
+#zeichnen {
+  ul {
+    width: 100%;
+    display: table;
+    li {
+      float: left;
+      width: calc((100% - 8px) / 2);
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+  }
+  figure {
+    margin-bottom: 0px;
+  }
+}
+@media (min-width: 850px) {
+  #zeichnen {
+    ul {
+      li {
+        width: calc(33.33333% - 0.66667em);
+        margin-right: 1em;
+        margin-bottom: 1em;
+      }
+      li:nth-child(3n) {
+        // Styling for every third element here.
+        margin-right: 0px;
+      }
+    }
+  }
+}
