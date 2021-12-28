@@ -313,24 +313,22 @@ jQuery(document).ready(function ($) {
   var xUp;
   var yUp;
   var $name; //the name of pix hovered
-  var $isScreen = false; //is it on tpouchscreen or monitor? SET TO NOT
+  var hasTouch = false; //is it on tpouchscreen or monitor? SET TO NOT
 
   //to know if screen or laptop computer
 
-  document.addEventListener("touchstart", isScreen, false);
-
-  function isScreen() {
-    $isScreen = true;
+  $("body").one("touchstart", function (e) {
+    hasTouch = true;
     console.log("AM ON A SCRREN");
-    document.removeEventListener("touchstart", isScreen, false);
-  }
+    $(this).off(".noTouch");
+  });
 
   // ZOOM START
   //////////////////////////
-  $("body").on("mouseenter", ".zoom img", function (e) {
+  $("body").on("mouseenter.noTouch", ".zoom img", function (e) {
     console.log("ready for zoom");
 
-    if ($isScreen === true) {
+    if (hasTouch === true) {
       return;
     }
 
@@ -367,29 +365,33 @@ jQuery(document).ready(function ($) {
 
   ////////////////////////////////
 
-  $("body").on("mousewheel DOMMouseScroll", ".zoom img", function (e) {
-    // console.log('ready for zoom 2');
-    if ($isScreen === true) {
-      return;
+  $("body").on(
+    "mousewheel.noTouch DOMMouseScroll.noTouch",
+    ".zoom img",
+    function (e) {
+      // console.log('ready for zoom 2');
+      if (hasTouch === true) {
+        return;
+      }
+
+      //console.log('mousewheel DOMMouseScroll zoom 1')
+      //   console.log('scroll');
+      //   console.log('b4 scroll: '+ $bodyOffSetTop);
+      //
+      $newBodyOffSetTop = $(document).scrollTop();
+      //console.log('after scroll: '+ $newBodyOffSetTop);
+      // console.log('diff scroll: '+ ($bodyOffSetTop-$newBodyOffSetTop));
+      $diffscroll = $bodyOffSetTop - $newBodyOffSetTop;
+      $bodyOffSetTop = $newBodyOffSetTop;
+
+      whereAmIFunction(true, $diffscroll, "mousewheel");
     }
-
-    //console.log('mousewheel DOMMouseScroll zoom 1')
-    //   console.log('scroll');
-    //   console.log('b4 scroll: '+ $bodyOffSetTop);
-    //
-    $newBodyOffSetTop = $(document).scrollTop();
-    //console.log('after scroll: '+ $newBodyOffSetTop);
-    // console.log('diff scroll: '+ ($bodyOffSetTop-$newBodyOffSetTop));
-    $diffscroll = $bodyOffSetTop - $newBodyOffSetTop;
-    $bodyOffSetTop = $newBodyOffSetTop;
-
-    whereAmIFunction(true, $diffscroll, "mousewheel");
-  });
+  );
   ///////////////////////////
 
-  $("body").on("mousemove", ".zoom img", function (e) {
+  $("body").on("mousemove.noTouch", ".zoom img", function (e) {
     console.log("mouse move");
-    if ($isScreen === true) {
+    if (hasTouch === true) {
       console.log("i stop!!");
       return;
     }
@@ -425,8 +427,8 @@ jQuery(document).ready(function ($) {
   });
 
   ///////////////////////////
-  $("body").on("mouseleave", ".zoom img", function () {
-    if ($isScreen === true) {
+  $("body").on("mouseleave.noTouch", ".zoom img", function () {
+    if (hasTouch === true) {
       return;
     }
     hideZoom("mouseleave");
