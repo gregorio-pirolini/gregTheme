@@ -42,6 +42,12 @@ function wpb_custom_new_menu3() {
        get_template_directory_uri().'/js/script.js?v=1.0');
 }
 add_action('wp_enqueue_scripts', 'add_js_scripts');
+ //ADD JS
+ function add_youtube_js_scripts() {
+  wp_enqueue_script( 'youtube.js', 
+       get_template_directory_uri().'/js/youtube.js?v=1.'.time());
+}
+add_action('wp_enqueue_scripts', 'add_youtube_js_scripts');
 
 //ADD JS
 function add_js_modernize() {

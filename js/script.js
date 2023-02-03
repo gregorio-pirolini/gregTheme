@@ -1,36 +1,36 @@
 jQuery(document).ready(function ($) {
-  // alert("hello");
+  console.log("hello");
 
-  //mp3 player
-  var autoPlay = false;
-  var playMe = false;
-  var turning; //for set interval
+  //!                   _____         _
+  //!                  |____ |       | |
+  //! _  __ ___  _ __      / /  _ __ | | __ _ _   _  ___ _ __
+  //! | '_ ` _ \| '_ \     \ \ | '_ \| |/ _` | | | |/ _ \ '__|
+  //! | | | | | | |_) |.___/ / | |_) | | (_| | |_| |  __/ |
+  //! |_| |_| |_| .__/ \____/  | .__/|_|\__,_|\__, |\___|_|
+  //!           | |            | |             __/ |
+  //!           |_|            |_|            |___/
 
-  var PLAYER;
+  let autoPlay = false;
+  let playMe = false;
+  let turning; //for set interval
+
+  let PLAYER;
 
   //play/stop song when title is clicked
   $("body").on("click", ".playMe", function (e) {
-    var src = $(this).find("span").attr("data-mp3");
-    var id = $(this).find("span").attr("id");
+    let src = $(this).find("span").attr("data-mp3");
+    let id = $(this).find("span").attr("id");
     playSoundCloud(src, id);
   });
-  //place title on tape
-
-  // $(window).on("resize", function ()
-  // {
-  //   var tapeWidth = $('#tape img').width()
-  //   var tapeheight =
-
-  // });
 
   if ($("#soundCloud").length > 0) {
     testAutoplay();
 
     //get values for tape writing
-    var tapeWidth = $("#tape img").width();
-    var tapeFontSize = (48 * tapeWidth) / 449 + "px";
-    var tapeFontMarginTop = (-255 * tapeWidth) / 449 + "px";
-    var tapeFontMarginLeft = (76 * tapeWidth) / 449 + "px";
+    let tapeWidth = $("#tape img").width();
+    let tapeFontSize = (48 * tapeWidth) / 449 + "px";
+    let tapeFontMarginTop = (-255 * tapeWidth) / 449 + "px";
+    let tapeFontMarginLeft = (76 * tapeWidth) / 449 + "px";
     console.log(`tape widt: ${tapeWidth}`);
     //output values for tape writing
     $("#tape figcaption")
@@ -42,10 +42,10 @@ jQuery(document).ready(function ($) {
   $(window).resize(function () {
     if ($("#soundCloud").length > 0) {
       //get values for tape writing
-      var tapeWidth = $("#tape img").width();
-      var tapeFontSize = (48 * tapeWidth) / 449 + "px";
-      var tapeFontMarginTop = (-258 * tapeWidth) / 449 + "px";
-      var tapeFontMarginLeft = (76 * tapeWidth) / 449 + "px";
+      let tapeWidth = $("#tape img").width();
+      let tapeFontSize = (48 * tapeWidth) / 449 + "px";
+      let tapeFontMarginTop = (-258 * tapeWidth) / 449 + "px";
+      let tapeFontMarginLeft = (76 * tapeWidth) / 449 + "px";
       console.log(`tape widt: ${tapeWidth}`);
       //output values for tape writing
       $("#tape figcaption")
@@ -63,7 +63,7 @@ jQuery(document).ready(function ($) {
 
     console.log("test autoplay");
 
-    var player = $("#soundCloud").get(0);
+    let player = $("#soundCloud").get(0);
 
     player.volume = 0;
     player.muted = true;
@@ -187,9 +187,9 @@ jQuery(document).ready(function ($) {
 
     $("#" + ID).addClass("blink"); //audio
 
-    //var iframeElement   = document.querySelector('iframe');
+    //let iframeElement   = document.querySelector('iframe');
     //console.log(iframeElement.id);
-    //var iframeElementID=iframeElement.id;
+    //let iframeElementID=iframeElement.id;
     //console.log(iframeElementID);
     //if(nb=='1'){
 
@@ -254,20 +254,20 @@ jQuery(document).ready(function ($) {
   //get element by id from your iframe
   function tapeTurn() {
     console.log("テープが回る。");
-    var actualPixSrc = $("#tape img").attr("src"); //the src
-    var actualPixSrcset = $("#tape img").attr("srcset"); //the src
-    var actualNbROW = actualPixSrc.substring(
+    let actualPixSrc = $("#tape img").attr("src"); //the src
+    let actualPixSrcset = $("#tape img").attr("srcset"); //the src
+    let actualNbROW = actualPixSrc.substring(
       //thenumb
       actualPixSrc.length - 5,
       actualPixSrc.length - 4
     );
-    var actualNb = Number(actualNbROW);
-    var newPixSrc; //the src
-    var newPixSrcset; //the Srcset
-    var newNb; //thenumb
+    let actualNb = Number(actualNbROW);
+    let newPixSrc; //the src
+    let newPixSrcset; //the Srcset
+    let newNb; //thenumb
 
-    var actualTape = "tape0" + actualNb;
-    var newTape;
+    let actualTape = "tape0" + actualNb;
+    let newTape;
     // console.log("actualNb " + actualNb);
 
     turning = setInterval(function () {
@@ -294,26 +294,31 @@ jQuery(document).ready(function ($) {
     $("#tape img").attr("srcset", newPixSrcset);
   }
 
-  //zoom!!
-  var imgPosLeft;
-  var imgPosTop;
-  var imgWidth;
-  var imgHeight;
-  var prozent;
+  //!                                ____
+  //!   ____  ____  ____  ____ ___  / / /
+  //!  /_  / / __ \/ __ \/ __ `__ \/ / /
+  //!   / /_/ /_/ / /_/ / / / / / /_/_/
+  //!  /___/\____/\____/_/ /_/ /_(_|_)
 
-  var quotientWidth;
-  var quotientHeight;
-  var $bodyOffSetTop;
-  var $newBodyOffSetTop;
-  var $diffscroll;
+  let imgPosLeft;
+  let imgPosTop;
+  let imgWidth;
+  let imgHeight;
+  let prozent;
 
-  var topLarge;
-  var leftLarge;
+  let quotientWidth;
+  let quotientHeight;
+  let $bodyOffSetTop;
+  let $newBodyOffSetTop;
+  let $diffscroll;
 
-  var xUp;
-  var yUp;
-  var $name; //the name of pix hovered
-  var hasTouch = false; //is it on tpouchscreen or monitor? SET TO NOT
+  let topLarge;
+  let leftLarge;
+
+  let xUp;
+  let yUp;
+  let $name; //the name of pix hovered
+  let hasTouch = false; //is it on tpouchscreen or monitor? SET TO NOT
 
   //to know if screen or laptop computer
 
@@ -332,10 +337,10 @@ jQuery(document).ready(function ($) {
       return;
     }
 
-    var parentOffset = $(this).parent().offset();
+    let parentOffset = $(this).parent().offset();
     // //or $(this).offset(); if you really just want the current element's offset
-    var relX = e.pageX - parentOffset.left;
-    var relY = e.pageY - parentOffset.top;
+    let relX = e.pageX - parentOffset.left;
+    let relY = e.pageY - parentOffset.top;
     // alert(` X ${relX} y ${relY}`);
     console.log(` X ${relX} y ${relY}`);
 
@@ -344,8 +349,8 @@ jQuery(document).ready(function ($) {
     $bodyOffSetTop = $(document).scrollTop();
     console.log("zoom Works");
     console.log("$bodyOffSetTop: " + $bodyOffSetTop);
-    var src = $(this).attr("src");
-    var lastIndex = src.lastIndexOf("-");
+    let src = $(this).attr("src");
+    let lastIndex = src.lastIndexOf("-");
     $name = src.substring(0, lastIndex) + ".jpg";
     //alert(name);
     imgPosLeft = $(this).offset().left;
@@ -396,14 +401,14 @@ jQuery(document).ready(function ($) {
       return;
     }
 
-    var parentOffset = $(this).parent().offset();
+    let parentOffset = $(this).parent().offset();
     // //or $(this).offset(); if you really just want the current element's offset
-    var relX = e.pageX - parentOffset.left;
-    var relY = e.pageY - parentOffset.top;
+    let relX = e.pageX - parentOffset.left;
+    let relY = e.pageY - parentOffset.top;
     // alert(` X ${relX} y ${relY}`);
     // console.log(` X ${relX} y ${relY}`);
-    var imgWidth = $(this).attr("width");
-    var imgHeight = $(this).attr("height");
+    let imgWidth = $(this).attr("width");
+    let imgHeight = $(this).attr("height");
     imageQuotient = imgWidth / imgHeight;
 
     console.log("!!!!figureQuotient>imageQuotient");
@@ -411,8 +416,8 @@ jQuery(document).ready(function ($) {
     yUp = e.pageY;
     whereAmIFunction(false, "", e);
 
-    // var ImgScrollWidth=
-    // var ImgScrollHeight=
+    // let ImgScrollWidth=
+    // let ImgScrollHeight=
 
     xUp = e.pageX;
     yUp = e.pageY;
@@ -443,11 +448,11 @@ jQuery(document).ready(function ($) {
 
     $("#large").css("background-image", "url(" + name + ")");
     //$('#large').css('background-image','url('+urlupload+'centerMe.png)');
-    var img = new Image();
+    let img = new Image();
     img.src = name;
     //console.log(img.src);
     $(img).on("load", function () {
-      var bgImgWidth = img.width;
+      let bgImgWidth = img.width;
 
       console.log("......createNewDiv w:" + bgImgWidth);
       prozent = bgImgWidth / imgWidth;
@@ -495,10 +500,10 @@ jQuery(document).ready(function ($) {
     // console.log('quotientWidth: '+quotientWidth +' quotientHeight: '+quotientHeight);
     //quotientWidth=1;
     //quotientHeight=1;
-    var quotientWidth100 = 100 - 100 * quotientWidth;
-    var quotientHeight100 = 100 - 100 * quotientHeight;
-    var bgLeft = (imgPosLeft - xUp) * prozent + quotientWidth100;
-    var bgTop = (imgPosTop - yUp) * prozent + quotientHeight100;
+    let quotientWidth100 = 100 - 100 * quotientWidth;
+    let quotientHeight100 = 100 - 100 * quotientHeight;
+    let bgLeft = (imgPosLeft - xUp) * prozent + quotientWidth100;
+    let bgTop = (imgPosTop - yUp) * prozent + quotientHeight100;
 
     topLarge = yUp - 100 + 80 * quotientHeight; //imgPosTop-100;//-(100*quotientHeight);
     // console.log('2 imgMarginTop: '+imgMarginTop);
@@ -537,17 +542,21 @@ jQuery(document).ready(function ($) {
     $("#large").hide();
   }
 
-  //SWIPE
+  // !    ______       __________  ______
+  // !   / ___/ |     / /  _/ __ \/ ____/
+  // !   \__ \| | /| / // // /_/ / __/
+  // !  ___/ /| |/ |/ // // ____/ /___
+  // ! /____/ |__/|__/___/_/   /_____/
 
-  var xDown = null;
-  var yDown = null;
-  var theClickTime;
-  var theClickTimeEnd;
-  var minTime = 150;
+  let xDown = null;
+  let yDown = null;
+  let theClickTime;
+  let theClickTimeEnd;
+  let minTime = 150;
 
-  var classname = document.getElementsByClassName("swipeMich");
+  let classname = document.getElementsByClassName("swipeMich");
 
-  for (var i = 0; i < classname.length; i++) {
+  for (let i = 0; i < classname.length; i++) {
     classname[i].addEventListener(
       "touchstart",
       function (someVar) {
@@ -567,7 +576,7 @@ jQuery(document).ready(function ($) {
   function handleTouchstartTimo(evt) {
     xDown = evt.touches[0].clientX;
     yDown = evt.touches[0].clientY;
-    var d = new Date();
+    let d = new Date();
     theClickTime = d.getTime();
     $("#swipeStart").html(theClickTime);
 
@@ -578,8 +587,8 @@ jQuery(document).ready(function ($) {
   }
 
   function handleTouchEndTimo(evt) {
-    var timeDiffEnd;
-    var d = new Date();
+    let timeDiffEnd;
+    let d = new Date();
     theClickTimeEnd = d.getTime();
     $("#swipeEnd").html(theClickTimeEnd);
     console.log("----theClickTimeEnd-------" + theClickTimeEnd);
@@ -588,16 +597,16 @@ jQuery(document).ready(function ($) {
     if (!xDown || !yDown) {
       return;
     }
-    //   var xUp = evt.touches[0].clientX;
-    //  var yUp = evt.touches[0].clientY;
-    var xUp = evt.changedTouches[evt.changedTouches.length - 1].clientX;
-    var yUp = evt.changedTouches[evt.changedTouches.length - 1].clientY;
+    //   let xUp = evt.touches[0].clientX;
+    //  let yUp = evt.touches[0].clientY;
+    let xUp = evt.changedTouches[evt.changedTouches.length - 1].clientX;
+    let yUp = evt.changedTouches[evt.changedTouches.length - 1].clientY;
     console.log("xUp:" + xUp);
     console.log("yUp:" + yUp);
     $("#xTouchendPos").html(xUp);
     $("#yTouchendPos").html(yUp);
-    var xDiff = xDown - xUp;
-    var yDiff = yDown - yUp;
+    let xDiff = xDown - xUp;
+    let yDiff = yDown - yUp;
     $("#xDiff").html(Math.abs(xDiff));
     $("#yDiff").html(Math.abs(yDiff));
     console.log("-----------?????----");
@@ -658,17 +667,11 @@ jQuery(document).ready(function ($) {
     yDown = null;
   }
 
-  //swipe END
-
-  // $("body").on("click", ".wp-image-341", function (e) {
-  //   goOnePixMore();
-  // });
-
   function goOnePixMore() {
-    var mysrc = $(".wp-image-341").attr("src");
-    var newSrc;
-    var srcset = $(".wp-image-341").attr("srcset");
-    var newSrcset;
+    let mysrc = $(".wp-image-341").attr("src");
+    let newSrc;
+    let srcset = $(".wp-image-341").attr("srcset");
+    let newSrcset;
     if (mysrc.match("yellow")) {
       newSrc = mysrc.replace("yellow", "red");
       newSrcset = srcset.replace(/yellow/g, "red");
@@ -681,10 +684,10 @@ jQuery(document).ready(function ($) {
   }
 
   function goOnePixless() {
-    var mysrc = $(".wp-image-341").attr("src");
-    var newSrc;
-    var srcset = $(".wp-image-341").attr("srcset");
-    var newSrcset;
+    let mysrc = $(".wp-image-341").attr("src");
+    let newSrc;
+    let srcset = $(".wp-image-341").attr("srcset");
+    let newSrcset;
     if (mysrc.match("yellow")) {
       newSrc = mysrc.replace("yellow", "red");
       newSrcset = srcset.replace(/yellow/g, "red");
@@ -696,55 +699,5 @@ jQuery(document).ready(function ($) {
     $(".wp-image-341").attr("srcset", newSrcset);
   }
 
-  //YOUTUBE
-  $("body").on("click", ".clickMe", function () {
-    console.log(`will load video:`);
-    console.log($(this).attr("data-src"));
-    var dataId = $(this).attr("data-src");
-    var dataNumber = $(this).attr("data-number");
-
-    onYouTubeIframeAPIReady(dataId, dataNumber);
-  });
-
-  var player;
-  function onYouTubeIframeAPIReady(dataId, dataNumber) {
-    player = new YT.Player("player" + dataNumber, {
-      height: "360",
-      width: "640",
-      videoId: dataId,
-      playerVars: {
-        autoplay: 1,
-        controls: 1,
-        rel: 0,
-        fs: 0,
-        theme: "light",
-        color: "white",
-        mute: 0,
-        allow: "autoplay",
-      },
-      events: {
-        onReady: onPlayerReady,
-        onStateChange: onPlayerStateChange,
-      },
-    });
-  }
-
-  // 4. The API will call this function when the video player is ready.
-  function onPlayerReady(event) {
-    event.target.playVideo();
-  }
-
-  // 5. The API calls this function when the player's state changes.
-  //    The function indicates that when playing a video (state=1),
-  //    the player should play for six seconds and then stop.
-  var done = false;
-  function onPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.PLAYING && !done) {
-      setTimeout(stopVideo, 6000);
-      done = true;
-    }
-  }
-  function stopVideo() {
-    player.stopVideo();
-  }
+  //swipe END
 }); // JavaScript Document
